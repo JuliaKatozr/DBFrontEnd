@@ -7,11 +7,11 @@ class Criarproduto extends Component {
         super(props);
  
         this.state = {
-            mercadoria: {
+            produto: {
                 nome: "",
-                preco: "",
-                quantidade: "",
-                descricao: ""
+                preço: "",
+                quantidadeEmEstoque: "",
+                descrição: ""
             },
             erro: null,
             redirect: false
@@ -117,7 +117,7 @@ class Criarproduto extends Component {
     };
  
     handleSubmit = event => {
-        fetch("https://prova-banco-julia.herokuapp.com/mercadoria", {
+        fetch("https://dbbackendp2.herokuapp.com/produto", {
             method: "post",
             body: JSON.stringify(this.state.produto),
             headers: {
