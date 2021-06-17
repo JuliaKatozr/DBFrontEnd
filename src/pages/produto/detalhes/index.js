@@ -8,9 +8,9 @@ export default class produto extends Component {
     };
  
     componentDidMount() {
+
         const { id } = this.props.match.params;
- 
-        fetch(`${process.env.REACT_APP_API_URL}`)
+        fetch(`https://dbbackendp2.herokuapp.com/produto/${id}`)
             .then(produto =>
                 produto.json().then(produto => this.setState({ produto }))
             )
@@ -18,7 +18,7 @@ export default class produto extends Component {
     }
  
     render() {
-        const { produto } = this.state;
+
         
         return (
             <div className="produto-info">
