@@ -8,13 +8,13 @@ export default class Main extends Component {
         super(props);
  
         this.state = {
-            mercadoria: [],
+            produto: [],
             erro: null
         };
     }
  
     componentDidMount() {
-        fetch("https://prova-banco-julia.herokuapp.com/mercadoria")
+        fetch("https://dbbackendp2.herokuapp.com/produto")
             .then(produto =>
                 produto.json().then(produto => this.setState({ produto }))
             )
@@ -22,7 +22,7 @@ export default class Main extends Component {
     }
  
     render() {
-        const { mercadoria } = this.state;
+        const { produto } = this.state;
  
         return (
             <div className="produto-list">
@@ -41,13 +41,13 @@ export default class Main extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {mercadoria.map((produto, index) => (
-                            <tr key={mercadoria.id}> 
-                                <th scope="row">{mercadoria.id}</th>
-                                <td>{mercadoria.nome}</td>
-                                <td>{mercadoria.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                                <td>{mercadoria.quantidade}</td>
-                                <td>{produto.descricao}</td>
+                        {produto.map((produto, index) => (
+                            <tr key={produto.id}> 
+                                <th scope="row">{produto.id}</th>
+                                <td>{produto.nome}</td>
+                                <td>{produto.preço.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                                <td>{produto.quantidadeEmEstoque}</td>
+                                <td>{produto.descrição}</td>
                                 <td> <Link to={`/produtos/${produto.id}`}> <button type="button" className="btn btn-primary">Detalhes</button> </Link> </td>
                                 <td> <Link to={`/editarproduto/${produto.id}`}> <button type="button" className="btn btn-warning">Atualizar</button> </Link> </td>
                                 <td> <Link to={`/deletarproduto/${produto.id}`}> <button type="button" className="btn btn-danger">Excluir</button> </Link> </td>
